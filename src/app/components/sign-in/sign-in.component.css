@@ -1,0 +1,56 @@
+.container h2{
+  text-align: center;
+  color: white;
+}
+.container label{
+  text-align: center;
+  display: block; /* Отображение меток как блочных элементов */
+  margin-bottom: 10px; /* Отступ снизу */
+  font-weight: bold; /* Жирный шрифт для меток */
+  color: #ffffff;
+}
+.container hr{
+  color: #5914ae;
+}
+
+.container input{
+  font-family: Lobster;
+  text-align: center;
+  background: transparent;
+  color: white;
+  width: 90%; /* Полная ширина поля ввода */
+  padding: 10px; /* Отступы внутри поля */
+  margin-bottom: 15px; /* Отступ снизу */
+  border: 2px solid #ffffff; /* Рамка вокруг поля */
+  border-radius: 4px; /* Закругленные углы */
+  font-size: 16px; /* Размер шрифта */
+}
+.container button {
+  font-family: Lobster;
+  display: block; /* Отображение кнопки как блочного элемента */
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px; /* Отступы внутри кнопки */
+  border: none; /* Убрать рамку */
+  border-radius: 4px; /* Закругленные углы */
+  background-color: #6214ae;
+  color: white; /* Цвет текста */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Курсор в виде указателя */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.container button:hover {
+  background-color: #48107e;
+}
+
+
+
+.container{
+  max-width: 220px; /* Максимальная ширина формы */
+  margin: 20px auto; /* Центрирование формы на странице */
+  padding: 30px; /* Отступы внутри формы */
+  border: 1px solid rgba(25, 17, 78, 0.8); /* Рамка вокруг формы */
+  border-radius: 8px; /* Закругленные углы */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+}

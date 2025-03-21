@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+.bg{
+  font-family: Lobster;
+  min-height: 100vh;
+  background: rgb(0,0,0);
+  background: linear-gradient(30deg, rgba(0,0,0,1) 26%, rgba(24,5,78,1) 66%, rgba(125,14,221,1) 100%);
+  background-size: cover;
+}

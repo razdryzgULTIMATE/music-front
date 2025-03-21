@@ -1,1 +1,14 @@
-<p>sign-in works!</p>
+<div class="container">
+  <h2>Вход</h2>
+  <hr/>
+  <div>
+    <label for="username">Логин</label>
+    <input type="text" id="username" name="username" [(ngModel)]="user.username"/>
+  </div>
+  <div>
+    <label for="password">Пароль</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password"/>
+  </div>
+
+  <button>Вход</button>
+</div>

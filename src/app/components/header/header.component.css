@@ -3,5 +3,8 @@
 }
 a{
   margin-right: 10px;
-  /*color: white;*/
+  color: white;
+}
+hr{
+  color: #591ea3;
 }
