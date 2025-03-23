@@ -1,13 +1,13 @@
 .container h2{
   text-align: center;
-  color: white;
+  color: #d8d0d0;
 }
 .container label{
   text-align: center;
   display: block; /* Отображение меток как блочных элементов */
   margin-bottom: 10px; /* Отступ снизу */
   font-weight: bold; /* Жирный шрифт для меток */
-  color: #ffffff;
+  color: #d8d0d0;
 }
 .container hr{
   color: #5914ae;
@@ -21,7 +21,7 @@
   width: 90%; /* Полная ширина поля ввода */
   padding: 10px; /* Отступы внутри поля */
   margin-bottom: 15px; /* Отступ снизу */
-  border: 2px solid #ffffff; /* Рамка вокруг поля */
+  border: 2px solid #d8d0d0; /* Рамка вокруг поля */
   border-radius: 4px; /* Закругленные углы */
   font-size: 16px; /* Размер шрифта */
 }
@@ -34,7 +34,7 @@
   border: none; /* Убрать рамку */
   border-radius: 4px; /* Закругленные углы */
   background-color: #6214ae;
-  color: white; /* Цвет текста */
+  color: #d8d0d0; /* Цвет текста */
   font-size: 16px; /* Размер шрифта */
   cursor: pointer; /* Курсор в виде указателя */
   transition: background-color 0.3s; /* Плавный переход цвета фона */

@@ -4,6 +4,11 @@
 a{
   margin-right: 10px;
   color: white;
+  text-decoration: none !important;
+  border: none !important;
+}
+a:hover{
+  color: rgba(225, 225, 230, 0.67);
 }
 hr{
   color: #591ea3;

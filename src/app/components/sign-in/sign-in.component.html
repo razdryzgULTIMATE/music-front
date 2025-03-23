@@ -1,14 +1,32 @@
-<div class="container">
+<form class="container" [formGroup]="form"
+(ngSubmit)="onSubmit()"
+>
   <h2>Вход</h2>
   <hr/>
   <div>
-    <label for="username">Логин</label>
-    <input type="text" id="username" name="username" [(ngModel)]="user.username"/>
+    <label for="username">
+      Логин
+    </label>
+    <input type="text"
+           id="username"
+           name="username"
+           formControlName="username"
+           placeholder="Введите логин"
+    />
   </div>
   <div>
-    <label for="password">Пароль</label>
-    <input type="password" id="password" name="password" [(ngModel)]="user.password"/>
+    <label for="password">
+      Пароль
+    </label>
+    <input type="password"
+           id="password"
+           name="password"
+           formControlName="password"
+           placeholder="Введите пароль"
+    />
   </div>
 
-  <button>Вход</button>
-</div>
+  <button type="submit">
+    Вход
+  </button>
+</form>

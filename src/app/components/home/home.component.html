@@ -1,1 +1,20 @@
-<p>home works!</p>
+<h1>Все исполнители</h1>
+<div class="artist-grid">
+  @for (a of artists; track $index){
+    <div class="artist-card">
+      <h2>
+        <a routerLink="/artist/{{a.name}}/{{a.id}}" routerLinkActive="active">{{a.name}}</a>
+      </h2>
+      <hr/>
+      <ul>
+        @for (alb of a.albums; track $index){
+          <li>
+            <a routerLink="/album/{{alb.id}}" routerLinkActive="active">{{alb.title}}</a>
+          </li>
+        }
+
+      </ul>
+    </div>
+  }
+</div>
+
