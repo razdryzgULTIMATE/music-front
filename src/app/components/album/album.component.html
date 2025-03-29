@@ -1,1 +1,50 @@
-<p>album works!</p>
+<div class="container">
+  <h1>{{album.title}}</h1>
+
+  <div class="album-meta">
+    <h2 class="artist-list">
+      @for(art of album.artists; track art.id; let last = $last){
+        <span class="artist">
+          <a routerLink="/artist/{{art.name}}/{{art.id}}">{{art.name}}</a>
+        </span>
+      }
+    </h2>
+    <h2>{{album.genre.name}}</h2>
+    <h2>{{album.releaseDate | date: 'dd/MM/yyyy'}}</h2>
+  </div>
+
+  <div class="tracks-section">
+    <h3>Треки</h3>
+    <hr/>
+    @for (tr of album.tracks; track $index){
+      <span class="track-item">{{tr.title}}</span>
+    }
+  </div>
+
+  <div class="tags-section">
+    <h3>Теги</h3>
+    @for(tg of album.tags; track $index){
+      <span class="tag-item">{{tg.name}}</span>
+    }
+    @if (showTagInput) {
+    <div class="tag-input-container">
+      <input #tagInput type="text" class="tag-input">
+      <button (click)="addTag(tagInput.value)">Сохранить</button>
+    </div>
+    }
+
+    @if (isLoggedIn) {
+      <span class="tag-item add-tag" (click)="showTagInput = true">+</span>
+    }
+  </div>
+  @if(!isLoggedIn){
+    <p class="login-prompt">Войдите, чтобы оставить отзыв. <a routerLink="/sign-in">Войти</a></p>
+  }
+  <app-review
+    [reviews]="album.reviews"
+    [albumTitle]="album.title"
+    [albumId]="album.id"
+    [isAuth]="isLoggedIn"
+    (reviewSubmitted)="addReview($event, album.id)">
+  </app-review>
+</div>

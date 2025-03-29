@@ -1,1 +1,36 @@
-<p>review works!</p>
+<h3>Рецензии</h3>
+<div class="reviews-section">
+  @if (isAuth) {
+    <button (click)="openReviewModal()">Добавить рецензию</button>
+  }
+  @if (showReviewModal) {
+    <div class="modal-overlay">
+      <div class="review-modal">
+        <h3>Рецензия</h3>
+        <div class="stars-rating">
+          @for(star of [1,2,3,4,5]; track star) {
+            <span (click)="selectedRating = star"
+                  [class.active]="star <= selectedRating">★</span>
+          }
+        </div>
+        <textarea [(ngModel)]="reviewText"></textarea>
+        <button (click)="submitReview()">Отправить</button>
+        <button (click)="showReviewModal = false">Отмена</button>
+      </div>
+    </div>
+  }
+  @for (rev of reviews; track $index) {
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-username">{{rev.username}}</span>
+          <span class="review-rating">{{rev.rating | stars}}</span>
+        </div>
+        <span class="review-date">{{rev.reviewDate | date: 'dd/MM/yyyy' }}</span>
+
+      </div>
+<!--      <p class="my">Альбом: <a routerLink="/album/{{albumId}}">{{albumTitle}}</a></p>-->
+      <p class="review-text">{{rev.text}}</p>
+    </div>
+  }
+</div>

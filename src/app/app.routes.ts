@@ -12,7 +12,7 @@ export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  {path: 'cabinet/:username', component: UserComponent, canActivate: [canActivateAuth]},
+  {path: 'user/:username', component: UserComponent, canActivate: [canActivateAuth]},
   {path: 'admin', component: AdminComponent, canActivate: [canActivateAuth]},
   {path: 'artist/:artistName/:artistId', component: ArtistComponent},
   {path: 'album/:albumId', component: AlbumComponent},

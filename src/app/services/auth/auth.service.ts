@@ -33,14 +33,12 @@ export class AuthService {
   }
   logout(){
     const u = this.url + "/logout"
+    localStorage.removeItem("username")
     this.cookieService.deleteAll()
     this.http.get(u)
   }
   get isAuth(){
-    if(!this.token){
-      this.token = this.cookieService.get("token")
-    }
-    return !!this.token
+    return !!this.cookieService.get("token")
   }
 
 }

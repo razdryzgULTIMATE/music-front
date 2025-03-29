@@ -1,6 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Lobster");
+/*@import url("https://fonts.googleapis.com/css?family=Lobster");*/
 .bg{
-  font-family: Lobster;
+  font-family: 'Arial', sans-serif;
+  /*font-family: Lobster;*/
   min-height: 100vh;
   background: rgb(0,0,0);
   background: linear-gradient(30deg, rgba(0,0,0,1) 26%, rgba(24,5,78,1) 66%, rgba(125,14,221,1) 100%);

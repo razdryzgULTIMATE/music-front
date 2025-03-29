@@ -1,1 +1,17 @@
-<p>artist works!</p>
+<div class="artist-container">
+  <div class="artist-header">
+    <h1>{{artist.name}}</h1>
+  </div>
+
+  <div class="albums-section">
+    <div class="albums-grid">
+      @for (alb of artist.albums; track $index){
+        <div class="album-card">
+          <a routerLink="/album/{{alb.id}}" routerLinkActive="active">
+            {{alb.title}}
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</div>

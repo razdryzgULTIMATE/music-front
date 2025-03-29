@@ -1,0 +1,103 @@
+/* Стили для страницы исполнителя */
+.artist-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+}
+
+.artist-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.artist-header h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  display: inline-block;
+  padding: 0 2rem;
+  position: relative;
+  background: linear-gradient(45deg,
+  rgba(125,14,221,0.3) 0%,
+  rgba(24,5,78,0.3) 50%,
+  rgba(125,14,221,0.3) 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(125,14,221,0.4);
+}
+
+.albums-section {
+  margin-top: 2rem;
+}
+
+.albums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.album-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(125,14,221,0.2);
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+  background: rgba(125,14,221,0.1);
+  box-shadow: 0 8px 24px rgba(125,14,221,0.1);
+}
+
+.album-card a {
+  color: #e8d6ff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  position: relative;
+  z-index: 1;
+  padding-left: 2rem;
+}
+
+.album-card a::before {
+  content: '💿';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+  opacity: 0.8;
+}
+
+.album-card:hover a::before {
+  animation: disc-spin 1.5s linear infinite;
+}
+
+@keyframes disc-spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .artist-container {
+    padding: 1rem;
+  }
+
+  .artist-header h1 {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .albums-grid {
+    grid-template-columns: 1fr;
+  }
+}

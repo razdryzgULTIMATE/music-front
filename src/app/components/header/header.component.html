@@ -1,8 +1,14 @@
 <header class="hdr">
   <nav>
     <a routerLink="/" routerLinkActive="active">Главная</a>
-    <a routerLink="/sign-in" routerLinkActive="active">Sign in</a>
-    <a routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+    @if(isLoggedIn){
+      <a routerLink="user/{{username}}">{{username}}</a>
+      <a (click)="logout()">Выйти</a>
+    } @else {
+      <a routerLink="/sign-in" routerLinkActive="active">Sign in</a>
+      <a routerLink="/sign-up" routerLinkActive="active">Sign Up</a>
+    }
+
   </nav>
 </header>
 <hr/>

@@ -1,0 +1,129 @@
+.reviews-section {
+  margin-top: 3rem;
+}
+
+.review-card {
+  background: rgba(31, 31, 31, 0.9);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(125,14,221,0.2);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-username {
+  font-weight: bold;
+  color: #d4a8ff;
+  margin-right: 1rem;
+}
+
+.review-rating {
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+.review-date {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.review-text {
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0;
+}
+.review-modal {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+
+  .stars-rating {
+    margin-bottom: 1rem;
+    span {
+      cursor: pointer;
+      font-size: 2rem;
+      color: #666;
+      transition: all 0.2s ease;
+
+      &.active {
+        color: #ffd700;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  textarea {
+    width: 90%;
+    height: 150px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #7d0edd;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+}
+button {
+  background: rgba(125,14,221,0.8);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(125,14,221,0.5);
+}
+
+
+button:hover {
+  background: rgba(125,14,221,1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(125,14,221,0.3);
+}
+
+
+.login-warning a {
+  color: #d4a8ff;
+  text-decoration: none;
+  margin-left: 0.5rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.my a{
+  color: #d0d0d0;
+  text-decoration: none !important;
+  border: none !important;
+}
+.my a:hover{
+  color: rgba(154, 150, 150, 0.67);
+}
+h3{
+  color: #d0d0d0;
+}

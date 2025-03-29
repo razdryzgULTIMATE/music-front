@@ -25,6 +25,7 @@ export class SignInComponent {
 
         console.log(s)
       })
+      localStorage.setItem("username", this.form.value.username!)
       // this.router.navigate([`/cabinet/${this.form.value.username}`])
       this.router.navigate([''])
     }

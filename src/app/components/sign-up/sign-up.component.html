@@ -1,4 +1,4 @@
-<form class="container" [formGroup]="form"
+<form class="better-container" [formGroup]="form"
       (ngSubmit)="onSubmit()"
 >
   <h2>Регистрация</h2>
@@ -7,26 +7,33 @@
     <label for="username">
       Логин
     </label>
-    <input type="text"
-           id="username"
-           name="username"
-           formControlName="username"
-           placeholder="Введите логин"
-    />
+    <div>
+      <input type="text"
+             id="username"
+             name="username"
+             formControlName="username"
+             placeholder="Введите логин"
+      />
+    </div>
   </div>
   <div>
     <label for="password">
       Пароль
     </label>
-    <input type="password"
-           id="password"
-           name="password"
-           formControlName="password"
-           placeholder="Введите пароль"
-    />
+    <div class="center">
+      <input type="password"
+             id="password"
+             name="password"
+             formControlName="password"
+             placeholder="Введите пароль"
+      />
+    </div>
+
+  </div>
+  <div class="center2">
+    <button type="submit">
+      Зарегистрироваться
+    </button>
   </div>
 
-  <button type="submit">
-    Зарегистрироваться
-  </button>
 </form>
