@@ -1,9 +1,33 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ITag} from '../../interfaces/ITag';
+import {backendURL} from '../../../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TagService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  private url = backendURL + "/tag/"
+  createTag(tag: ITag, albumId: number){
+    const url = this.url + albumId;
+    console.log(url)
+    return this.http.post<ITag>(url, tag)
+  }
+  updateTag(tag: ITag, id: number){
+    const url = this.url + id;
+    console.log(url)
+    return this.http.put<ITag>(url, tag)
+  }
+  deleteTag(id: number){
+    const url = this.url + id;
+    console.log(url)
+    this.http.delete(url);
+  }
+  getAll(){
+    const url = this.url + "all"
+    console.log(url)
+    this.http.get<ITag[]>(url);
+  }
 }

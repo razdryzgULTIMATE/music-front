@@ -2,7 +2,11 @@
   <nav>
     <a routerLink="/" routerLinkActive="active">Главная</a>
     @if(isLoggedIn){
-      <a routerLink="user/{{username}}">{{username}}</a>
+      @if(isAdmin){
+        <a routerLink="/admin">Admin</a>
+      }@else{
+        <a routerLink="/user/{{username}}">{{username}}</a>
+      }
       <a (click)="logout()">Выйти</a>
     } @else {
       <a routerLink="/sign-in" routerLinkActive="active">Sign in</a>

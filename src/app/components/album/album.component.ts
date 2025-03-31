@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {ReviewService} from '../../services/review/review.service';
 import {ReviewComponent} from '../review/review.component';
 import {ITag} from '../../interfaces/ITag';
+import {TagService} from '../../services/tag/tag.service';
 
 @Component({
   selector: 'app-album',
@@ -28,6 +29,7 @@ import {ITag} from '../../interfaces/ITag';
 export class AlbumComponent implements OnInit{
   private albumService = inject(AlbumService)
   private reviewService = inject(ReviewService)
+  private tagService = inject(TagService);
   showTagInput = false;
 
   album: IAlbum = {
@@ -70,6 +72,7 @@ export class AlbumComponent implements OnInit{
   addTag(str: string) {
     // Логика добавления тега
     const tag: ITag = {name: str}
+    this.tagService.createTag(tag, this.album.id).subscribe(data => console.log(data))
     this.album.tags.push(tag)
     this.showTagInput=false
   }

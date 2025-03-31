@@ -13,6 +13,9 @@ export class HeaderComponent {
   get isLoggedIn(): boolean {
     return this.authService.isAuth;
   }
+  get isAdmin(){
+    return this.authService.role;
+  }
   get username(){
     return localStorage.getItem("username")!
   }

@@ -4,6 +4,7 @@ import {backendURL, headers} from '../../../environment';
 import {TokenResponse} from '../../interfaces/tokenResponse';
 import {tap} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,10 @@ export class AuthService {
   get isAuth(){
     return !!this.cookieService.get("token")
   }
-
+  get role(){
+    const jwt = this.cookieService.get("token")
+    const decoded: any = jwtDecode(jwt);
+    console.log(decoded)
+    return decoded.role
+  }
 }
