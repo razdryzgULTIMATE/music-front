@@ -1,0 +1,29 @@
+<div class="items-grid">
+  @for (r of reviews; track r.id) {
+    <div class="admin-card">
+      <h3>{{ r.username }}</h3>
+      <div class="meta-info">
+        <p>Id: {{ r.id }}</p>
+        <p>Оценка: {{ r.rating | stars}}</p>
+        <p>Дата отзыва: {{ r.reviewDate }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn" (click)="openEdit(r)">✏️</button>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn-delete" (click)="delete(r.id)">🗑️</button>
+      </div>
+    </div>
+  }
+  <button class="add-btn" (click)="openAdd()">+ Добавить рецензию</button>
+</div>
+
+@if (showModal()) {
+  <app-admin-modal
+    [title]="modalTitle()"
+    [form]="reviewForm"
+    [formConfig]="formFields"
+    (close)="closeModal()"
+    (save)="save()"
+  />
+}

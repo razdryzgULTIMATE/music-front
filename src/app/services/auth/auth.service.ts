@@ -44,7 +44,7 @@ export class AuthService {
   get role(){
     const jwt = this.cookieService.get("token")
     const decoded: any = jwtDecode(jwt);
-    console.log(decoded)
+    // console.log(decoded)
     return decoded.role
   }
 }

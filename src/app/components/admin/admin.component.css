@@ -1,0 +1,138 @@
+/* Стили для админ-панели */
+.admin-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.admin-nav {
+  margin: 2rem 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  background: rgba(125,14,221,0.3);
+  border: 1px solid rgba(125,14,221,0.5);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.admin-nav button.active {
+  background: rgba(125,14,221,0.8);
+  box-shadow: 0 4px 12px rgba(125,14,221,0.3);
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(125,14,221,0.2);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  background: rgba(125,14,221,0.1);
+}
+
+.card-actions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-actions button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.3rem;
+  transition: transform 0.2s ease;
+}
+
+.card-actions button:hover {
+  transform: scale(1.1);
+}
+
+.add-btn {
+  background: rgba(125,14,221,0.5);
+  border: 2px dashed rgba(255,255,255,0.3);
+  color: white;
+  height: 150px;
+  width: 100%;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background: rgba(125,14,221,0.7);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.admin-modal {
+  background: linear-gradient(30deg,
+  rgba(0,0,0,0.9) 20%,
+  rgba(24,5,78,0.9) 60%,
+  rgba(125,14,221,0.9) 100%);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid rgba(125,14,221,0.5);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d0d0d0;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(125,14,221,0.5);
+  border-radius: 6px;
+  color: white;
+}
+
+.modal-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}

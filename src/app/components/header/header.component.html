@@ -7,7 +7,7 @@
       }@else{
         <a routerLink="/user/{{username}}">{{username}}</a>
       }
-      <a (click)="logout()">Выйти</a>
+      <a (click)="logout()" routerLink="/">Выйти</a>
     } @else {
       <a routerLink="/sign-in" routerLinkActive="active">Sign in</a>
       <a routerLink="/sign-up" routerLinkActive="active">Sign Up</a>

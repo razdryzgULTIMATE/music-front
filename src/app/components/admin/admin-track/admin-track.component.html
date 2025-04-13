@@ -1,0 +1,28 @@
+<div class="items-grid">
+  @for (t of tracks; track t.id) {
+    <div class="admin-card">
+      <h3>{{ t.title }}</h3>
+      <div class="meta-info">
+        <p>Id: {{ t.id }}</p>
+        <p>Album Id: {{ t.albumId }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn" (click)="openEdit(t)">✏️</button>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn-delete" (click)="deleteTrack(t.id)">🗑️</button>
+      </div>
+    </div>
+  }
+  <button class="add-btn" (click)="openAdd()">+ Добавить трек</button>
+</div>
+
+@if (showModal()) {
+  <app-admin-modal
+    [title]="modalTitle()"
+    [form]="trackForm"
+    [formConfig]="formFields"
+    (close)="closeModal()"
+    (save)="saveTrack()"
+  />
+}

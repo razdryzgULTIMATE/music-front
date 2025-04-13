@@ -36,7 +36,7 @@ export class AlbumComponent implements OnInit{
     id: 0,
     title: '',
     artists: [],
-    genre: {name: ''},
+    genre: {name: '', id: 0},
     releaseDate: new Date(),
     cover: '',
     tags: [],
@@ -71,7 +71,7 @@ export class AlbumComponent implements OnInit{
   }
   addTag(str: string) {
     // Логика добавления тега
-    const tag: ITag = {name: str}
+    const tag: ITag = {name: str, id: 0}
     this.tagService.createTag(tag, this.album.id).subscribe(data => console.log(data))
     this.album.tags.push(tag)
     this.showTagInput=false

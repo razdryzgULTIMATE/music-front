@@ -1,0 +1,81 @@
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.admin-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(125,14,221,0.3);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.admin-card:hover {
+  transform: translateY(-5px);
+  background: rgba(125,14,221,0.1);
+}
+
+.cover-preview {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.meta-info {
+  color: #d0d0d0;
+  font-size: 0.9rem;
+}
+
+.meta-info p {
+  margin: 0.3rem 0;
+}
+
+.add-btn {
+  background: rgba(125,14,221,0.3);
+  border: 2px dashed rgba(255,255,255,0.2);
+  color: white;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  background: rgba(125,14,221,0.5);
+  border-style: solid;
+}
+
+.card-actions{
+  text-align: end;
+}
+.adm-btn{
+  background: rgba(125,14,221,0.8);
+  color: white;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  /*transition: all 0.3s ease;*/
+  font-size: 1rem;
+  margin: 5px 0;
+  border: 1px solid rgba(125,14,221,0.5);
+}
+.adm-btn-delete{
+  background: rgba(92, 13, 143, 0.8);
+  color: white;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  /*transition: all 0.3s ease;*/
+  font-size: 1rem;
+  margin: 5px 0;
+  border: 1px solid rgba(125,14,221,0.5);
+}
+

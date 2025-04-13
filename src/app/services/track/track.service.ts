@@ -21,14 +21,14 @@ export class TrackService {
     return this.http.put<ITrack>(url, track)
   }
   getAll(){
-    const url = backendURL + "/track/all"
+    const url = backendURL + "/track"
     console.log(url)
     return this.http.get<ITrack[]>(url)
   }
   deleteTrack(id: number){
     const url = backendURL + "/admin/track/" + id
     console.log(url)
-    this.http.delete(url);
+    return this.http.delete(url);
   }
 
 

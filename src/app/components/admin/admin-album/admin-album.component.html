@@ -1,0 +1,29 @@
+<div class="items-grid">
+  @for (album of albums; track album.id) {
+    <div class="admin-card">
+      @if (album.cover) {
+        <img [src]="album.cover" class="cover-preview">
+      }
+      <h3>{{ album.title }}</h3>
+      <div class="meta-info">
+        <p>Жанр: {{ album.genre.name }}</p>
+        <p>Дата выхода: {{ album.releaseDate | date:'dd.MM.yyyy' }}</p>
+      </div>
+      <div class="card-actions">
+        <button (click)="openEdit(album)">✏️</button>
+        <button (click)="deleteAlbum(album.id)">🗑️</button>
+      </div>
+    </div>
+  }
+  <button class="add-btn" (click)="openAdd()">+ Добавить альбом</button>
+</div>
+
+@if (showModal()) {
+  <app-admin-modal
+    [title]="modalTitle()"
+    [form]="albumForm"
+    [formConfig]="formFields"
+    (close)="closeModal()"
+    (save)="saveAlbum()"
+  />
+}

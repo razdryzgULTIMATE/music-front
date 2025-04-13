@@ -19,7 +19,7 @@ export class ReviewService {
   createReview(rev: IReviewRequest){
     const url = backendURL + "/user/review"
     console.log(url)
-    return this.http.post<IReview>(url, rev, {headers});
+    return this.http.post<IReviewRequest>(url, rev, {headers});
   }
   updateReview(rev: IReviewRequest, id: number){
     const url = backendURL + "/user/review/" + id
@@ -29,12 +29,12 @@ export class ReviewService {
   deleteReview(id: number){
     const url = backendURL + "/user/review/" + id
     console.log(url)
-    this.http.delete(url)
+    return this.http.delete(url)
   }
   getAll(){
     const url = backendURL + "/review/all"
     console.log(url)
-    return this.http.get<IReview[]>(url);
+    return this.http.get<IReviewRequest[]>(url);
   }
   getReviewsByUsername(username: string) {
     const url = backendURL + "/review/by-user"

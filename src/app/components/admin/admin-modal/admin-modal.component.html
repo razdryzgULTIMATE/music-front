@@ -1,0 +1,30 @@
+<div class="modal-overlay" (click)="close.emit()">
+  <div class="admin-modal" (click)="$event.stopPropagation()">
+    <h2>{{ title }}</h2>
+
+    <form [formGroup]="form">
+      @for (field of formConfig; track field.name) {
+        <div class="form-group">
+          <label>{{ field.label }} {{ field.required ? '*' : '' }}</label>
+          <input
+            [type]="field.type"
+            [formControlName]="field.name"
+            [required]="field.required"
+          >
+          @if (form.get(field.name)?.invalid && form.get(field.name)?.touched) {
+            <span class="error-msg">Обязательное поле</span>
+          }
+        </div>
+      }
+    </form>
+
+    <div class="modal-actions">
+      <button class="save-btn" (click)="save.emit()" [disabled]="form.invalid">
+        Сохранить
+      </button>
+      <button class="cancel-btn" (click)="close.emit()">
+        Отмена
+      </button>
+    </div>
+  </div>
+</div>

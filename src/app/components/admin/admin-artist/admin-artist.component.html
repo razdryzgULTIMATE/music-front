@@ -1,0 +1,27 @@
+<div class="items-grid">
+  @for (a of artists; track a.id) {
+    <div class="admin-card">
+      <h3>{{ a.name }}</h3>
+      <div class="meta-info">
+        <p>Id: {{ a.id }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn" (click)="openEdit(a)">✏️</button>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn-delete" (click)="delete(a.id)">🗑️</button>
+      </div>
+    </div>
+  }
+  <button class="add-btn" (click)="openAdd()">+ Добавить исполнителя</button>
+</div>
+
+@if (showModal()) {
+  <app-admin-modal
+    [title]="modalTitle()"
+    [form]="artistForm"
+    [formConfig]="formFields"
+    (close)="closeModal()"
+    (save)="save()"
+  />
+}

@@ -14,7 +14,7 @@ export class HeaderComponent {
     return this.authService.isAuth;
   }
   get isAdmin(){
-    return this.authService.role;
+    return this.authService.role ==="ADMIN";
   }
   get username(){
     return localStorage.getItem("username")!

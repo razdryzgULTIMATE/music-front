@@ -1,0 +1,27 @@
+<div class="items-grid">
+  @for (genre of genres; track genre.id) {
+    <div class="admin-card">
+      <h3>{{ genre.name }}</h3>
+      <div class="meta-info">
+        <p>Id: {{ genre.id }}</p>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn" (click)="openEdit(genre)">✏️</button>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn-delete" (click)="deleteGenre(genre.id)">🗑️</button>
+      </div>
+    </div>
+  }
+  <button class="add-btn" (click)="openAdd()">+ Добавить жанр</button>
+</div>
+
+@if (showModal()) {
+  <app-admin-modal
+    [title]="modalTitle()"
+    [form]="genreForm"
+    [formConfig]="formFields"
+    (close)="closeModal()"
+    (save)="saveGenre()"
+  />
+}

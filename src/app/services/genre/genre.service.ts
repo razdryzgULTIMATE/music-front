@@ -12,7 +12,7 @@ export class GenreService {
   createGenre(genre: IGenre){
     const url = backendURL + "/admin/genre"
     console.log(url)
-    return this.http.post(url, genre);
+    return this.http.post<IGenre>(url, genre);
   }
   updateGenre(genre:IGenre, id: number){
     const url = backendURL + "/admin/genre/" + id
@@ -22,7 +22,7 @@ export class GenreService {
   deleteGenre(id: number){
     const url = backendURL + "/admin/genre/" + id
     console.log(url)
-    this.http.delete(url)
+    return this.http.delete(url)
   }
   getAll(){
     const url = backendURL + "/genre/all"
