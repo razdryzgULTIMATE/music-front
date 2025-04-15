@@ -1,18 +1,21 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit, signal} from '@angular/core';
 import {IAlbum} from '../../interfaces/IAlbum';
 import {AlbumService} from '../../services/album/album.service';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {routes} from '../../app.routes';
-import {IReview, IReviewRequest} from '../../interfaces/IReview';
-import {DatePipe} from '@angular/common';
-import {StarsPipe} from '../../pipes/rating/stars.pipe';
-import {ArtistPipe} from '../../pipes/artists/artist.pipe';
-import {AuthService} from '../../services/auth/auth.service';
-import {FormsModule} from '@angular/forms';
+import {CommonModule, DatePipe, formatDate} from '@angular/common';
+import {FormArray, FormBuilder, FormsModule, ReactiveFormsModule, FormControl, Validators} from '@angular/forms';
 import {ReviewService} from '../../services/review/review.service';
 import {ReviewComponent} from '../review/review.component';
 import {ITag} from '../../interfaces/ITag';
 import {TagService} from '../../services/tag/tag.service';
+import {GenreService} from '../../services/genre/genre.service';
+import {ArtistService} from '../../services/artist/artist.service';
+import {IAlbumRequest} from '../../interfaces/IAlbumRequest';
+import {IGenre} from '../../interfaces/IGenre';
+import {IArtist} from '../../interfaces/IArtist';
+import {FormControlPipe} from '../../pipes/formControl/form-control.pipe';
+import {IReview, IReviewRequest} from '../../interfaces/IReview';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-album',
@@ -20,7 +23,10 @@ import {TagService} from '../../services/tag/tag.service';
     DatePipe,
     RouterLink,
     FormsModule,
-    ReviewComponent
+    CommonModule,
+    ReviewComponent,
+    ReactiveFormsModule,
+    FormControlPipe
   ],
   templateUrl: './album.component.html',
   standalone: true,
@@ -93,6 +99,7 @@ export class AlbumComponent implements OnInit{
     )
     console.log(review)
   }
+
 
 
 

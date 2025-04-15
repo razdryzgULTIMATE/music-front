@@ -27,10 +27,10 @@
       <span class="tag-item">{{tg.name}}</span>
     }
     @if (showTagInput) {
-    <div class="tag-input-container">
-      <input #tagInput type="text" class="tag-input">
-      <button (click)="addTag(tagInput.value)">Сохранить</button>
-    </div>
+      <div class="tag-input-container">
+        <input #tagInput type="text" class="tag-input">
+        <button (click)="addTag(tagInput.value)">Сохранить</button>
+      </div>
     }
 
     @if (isLoggedIn) {

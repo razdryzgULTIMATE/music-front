@@ -7,11 +7,18 @@
       <h3>{{ album.title }}</h3>
       <div class="meta-info">
         <p>Жанр: {{ album.genre.name }}</p>
+        <p>Исполнители:
+          @for (artist of album.artists; track artist.id) {
+            {{ artist.name }}{{ !$last ? ', ' : '' }}
+          }
+        </p>
         <p>Дата выхода: {{ album.releaseDate | date:'dd.MM.yyyy' }}</p>
       </div>
       <div class="card-actions">
-        <button (click)="openEdit(album)">✏️</button>
-        <button (click)="deleteAlbum(album.id)">🗑️</button>
+        <button class="adm-btn" (click)="openEdit(album)">✏️</button>
+      </div>
+      <div class="card-actions">
+        <button class="adm-btn-delete" (click)="deleteAlbum(album.id)">🗑️</button>
       </div>
     </div>
   }
@@ -19,11 +26,99 @@
 </div>
 
 @if (showModal()) {
-  <app-admin-modal
-    [title]="modalTitle()"
-    [form]="albumForm"
-    [formConfig]="formFields"
-    (close)="closeModal()"
-    (save)="saveAlbum()"
-  />
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="album-modal" (click)="$event.stopPropagation()">
+      <h2>{{ modalTitle() }}</h2>
+
+      <form [formGroup]="albumForm">
+        <div class="form-group">
+          <label>Название альбома *</label>
+          <input type="text" formControlName="title">
+          @if (albumForm.get('title')?.invalid && albumForm.get('title')?.touched) {
+            <span class="error-msg">Обязательное поле</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Дата выхода *</label>
+          <input type="date" formControlName="releaseDate">
+          @if (albumForm.get('releaseDate')?.invalid && albumForm.get('releaseDate')?.touched) {
+            <span class="error-msg">Обязательное поле</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Жанр *</label>
+          <div class="input-with-action">
+            <select formControlName="genreId">
+              <option value="">Выберите жанр</option>
+              @for (genre of genres; track genre.id) {
+                <option [value]="genre.id">{{ genre.name }}</option>
+              }
+            </select>
+          </div>
+
+          @if (albumForm.get('genreId')?.invalid && albumForm.get('genreId')?.touched) {
+            <span class="error-msg">Обязательное поле</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Обложка (URL)</label>
+          <input type="url" formControlName="cover">
+        </div>
+
+        <div class="multi-input-group">
+          <label>Исполнители *</label>
+          @for (control of artistControls.controls; track $index) {
+            <div class="input-with-action">
+              <select [formControl]="control | formControl">
+                <option value="">Выберите исполнителя</option>
+                @for (artist of artists; track artist.id) {
+                  <option [value]="artist.id">{{ artist.name }}</option>
+                }
+              </select>
+              <button type="button" class="remove-btn" (click)="removeArtistControl($index)">×</button>
+              @if (control.invalid && !control.untouched) {
+                <span class="error-msg">Обязательное поле</span>
+              }
+            </div>
+          }
+          <button type="button" class="add-more-btn" (click)="addArtistControl()">
+            + Добавить исполнителя
+          </button>
+        </div>
+
+        <div class="multi-input-group">
+          <label>Теги</label>
+          @for (control of tagControls.controls; track $index) {
+            <div class="input-with-action">
+              <select [formControl]="control | formControl">
+                <option value="">Выберите тег</option>
+                @for (tag of tags; track tag.id) {
+                  <option [value]="tag.id">{{ tag.name }}</option>
+                }
+              </select>
+              <button type="button" class="remove-btn" (click)="removeTagControl($index)">×</button>
+              @if (control.invalid && !control.untouched) {
+                <span class="error-msg">Обязательное поле</span>
+              }
+            </div>
+          }
+          <button type="button" class="add-more-btn" (click)="addTagControl()">
+            + Добавить тег
+          </button>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="save-btn" (click)="saveAlbum()" [disabled]="albumForm.invalid">
+            Сохранить
+          </button>
+          <button type="button" class="cancel-btn" (click)="closeModal()">
+            Отмена
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 }
