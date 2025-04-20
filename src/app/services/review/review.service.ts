@@ -24,7 +24,7 @@ export class ReviewService {
   updateReview(rev: IReviewRequest, id: number){
     const url = backendURL + "/user/review/" + id
     console.log(url)
-    return this.http.put<IReview>(url, rev)
+    return this.http.put<IReviewRequest>(url, rev)
   }
   deleteReview(id: number){
     const url = backendURL + "/user/review/" + id

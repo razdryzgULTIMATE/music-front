@@ -17,7 +17,7 @@ export class GenreService {
   updateGenre(genre:IGenre, id: number){
     const url = backendURL + "/admin/genre/" + id
     console.log(url)
-    return this.http.put(url, genre)
+    return this.http.put<IGenre>(url, genre)
   }
   deleteGenre(id: number){
     const url = backendURL + "/admin/genre/" + id

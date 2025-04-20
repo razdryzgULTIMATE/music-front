@@ -19,7 +19,7 @@ export class AdminArtistComponent {
   private fb = inject(FormBuilder);
   showModal = signal(false);
   modalTitle = signal('Добавить отзыв');
-  currentGenreId = signal<number | null>(null);
+  currentArtistId = signal<number | null>(null);
   formFields = [
     {name: 'name', label: 'Название', type: 'text', required: true},
   ];
@@ -33,15 +33,15 @@ export class AdminArtistComponent {
   }
 
   openAdd() {
-    this.modalTitle.set('Добавить отзыв');
-    this.currentGenreId.set(null);
+    this.modalTitle.set('Добавить исполнителя');
+    this.currentArtistId.set(null);
     this.artistForm.reset();
     this.showModal.set(true);
   }
 
   openEdit(a: IArtist) {
-    this.modalTitle.set('Редактировать отзыв');
-    this.currentGenreId.set(a.id);
+    this.modalTitle.set('Редактировать исполнителя');
+    this.currentArtistId.set(a.id);
     this.artistForm.patchValue({
       name: a.name,
       id: a.id
@@ -56,12 +56,24 @@ export class AdminArtistComponent {
       id: this.artistForm.value.id!,
       name: this.artistForm.value.name!,
     }
-    this.artistService.createArtist(a).subscribe(data => this.artists.push(data))
+    if(this.currentArtistId()){
+      const id: number = this.currentArtistId()!
+      this.artistService.updateArtist(a, id).subscribe(data => {
+        for (let i = 0; i < this.artists.length; i++) {
+          if(this.artists[i].id === id){
+            this.artists[i].name = data.name
+          }
+        }
+      })
+    }
+    else{
+      this.artistService.createArtist(a).subscribe(data => this.artists.push(data))
+    }
     this.closeModal();
   }
 
   delete(id: number) {
-    if (confirm('Удалить отзыв?')) {
+    if (confirm('Удалить исполнителя?')) {
       this.artistService.deleteArtist(id).subscribe()
       this.artists = this.artists.filter(a => a.id !== id)
     }

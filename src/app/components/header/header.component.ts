@@ -6,12 +6,14 @@ import {AuthService} from '../../services/auth/auth.service';
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
+  standalone: true,
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
   private authService = inject(AuthService)
   get isLoggedIn(): boolean {
-    return this.authService.isAuth;
+    // const cond = this.authService.isAuth
+    return this.authService.isAuth
   }
   get isAdmin(){
     return this.authService.role ==="ADMIN";
@@ -21,6 +23,7 @@ export class HeaderComponent {
   }
   logout(){
     console.log("logged out")
+    localStorage.removeItem("username")
     this.authService.logout();
   }
 }

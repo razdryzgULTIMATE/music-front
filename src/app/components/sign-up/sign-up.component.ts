@@ -22,7 +22,7 @@ export class SignUpComponent {
     if(this.form.valid){
       //@ts-ignore
       this.authService.registration(this.form.value)
-      // this.router.navigate(['/sign-in'])
+      this.router.navigate(['/sign-in'])
     }
 
   }

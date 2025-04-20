@@ -26,7 +26,6 @@ import {AuthService} from '../../services/auth/auth.service';
     CommonModule,
     ReviewComponent,
     ReactiveFormsModule,
-    FormControlPipe
   ],
   templateUrl: './album.component.html',
   standalone: true,

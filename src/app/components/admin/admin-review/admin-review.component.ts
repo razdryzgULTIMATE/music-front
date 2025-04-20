@@ -18,7 +18,7 @@ export class AdminReviewComponent {
   private fb = inject(FormBuilder);
   showModal = signal(false);
   modalTitle = signal('Добавить отзыв');
-  currentGenreId = signal<number | null>(null);
+  currentReviewId = signal<number | null>(null);
   formFields = [
     {name: 'username', label: 'Название', type: 'text', required: true},
     {name: 'rating', label: 'Оценка', type: "number", required: true},
@@ -41,14 +41,14 @@ export class AdminReviewComponent {
 
   openAdd() {
     this.modalTitle.set('Добавить отзыв');
-    this.currentGenreId.set(null);
+    this.currentReviewId.set(null);
     this.reviewForm.reset();
     this.showModal.set(true);
   }
 
   openEdit(review: IReviewRequest) {
     this.modalTitle.set('Редактировать отзыв');
-    this.currentGenreId.set(review.id);
+    this.currentReviewId.set(review.id);
     this.reviewForm.patchValue({
       username: review.username,
       text: review.text,
@@ -71,7 +71,19 @@ export class AdminReviewComponent {
       text: this.reviewForm.value.text!,
       username: this.reviewForm.value.username!
     }
-    this.reviewService.createReview(r).subscribe(data => this.reviews.push(data))
+    if(this.currentReviewId()){
+      const id: number = this.currentReviewId()!
+      this.reviewService.updateReview(r, id).subscribe(data => {
+        for (let i = 0; i < this.reviews.length; i++) {
+          if(this.reviews[i].id === id){
+            this.reviews[i] = {...data}
+          }
+        }
+      })
+    }
+    else{
+      this.reviewService.createReview(r).subscribe(data => this.reviews.push(data))
+    }
     this.closeModal();
   }
 

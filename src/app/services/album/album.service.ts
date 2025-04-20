@@ -27,7 +27,7 @@ export class AlbumService {
   deleteAlbum(id: number){
     const url = backendURL + "/admin/album/" + id;
     console.log(url)
-    this.http.delete(url);
+    return this.http.delete(url);
   }
   getAll(){
     const url = backendURL + "/album/all"

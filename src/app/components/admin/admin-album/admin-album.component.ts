@@ -17,13 +17,12 @@ import {find} from 'rxjs';
 
 @Component({
   selector: 'app-admin-album',
-  imports: [ReactiveFormsModule, DatePipe, AdminModalComponent, FormControlPipe],
+  imports: [ReactiveFormsModule, DatePipe, FormControlPipe],
   templateUrl: './admin-album.component.html',
   styleUrl: './admin-album.component.css',
   standalone: true
 })
 export class AdminAlbumComponent {
-  // FIXME редактирование альбома
   private albumService = inject(AlbumService)
   private reviewService = inject(ReviewService)
   private tagService = inject(TagService);
@@ -107,7 +106,7 @@ export class AdminAlbumComponent {
     this.currentAlbumId.set(album.id);
     console.log("Edit album: \n", album)
     // console.log("Genres: \n", this.genres)
-    const genre = this.findGenreByName("Classic")
+    const genre = this.findGenreByName(album.genre.name)
     if(!genre){
       console.log("genre undefined")
       return
@@ -136,7 +135,7 @@ export class AdminAlbumComponent {
     const copy = [...this.genres]
     return copy.filter(g => g.name === name).pop()
   }
-  async saveAlbum() {
+  saveAlbum() {
     if (this.albumForm.invalid) return;
 
     const albumData: IAlbumRequest = {
@@ -146,14 +145,13 @@ export class AdminAlbumComponent {
       releaseDate: new Date(this.albumForm.value.releaseDate!),
       tags: this.tagControls.value,
       title: this.albumForm.value.title!
-
     };
 
     if (this.currentAlbumId()) {
       albumData.albumId = this.currentAlbumId()!
-      // await this.albumService.update(this.currentAlbumId()!, albumData);
+      this.albumService.updateAlbum(albumData,albumData.albumId).subscribe();
     } else {
-      await this.albumService.createAlbum(albumData);
+      this.albumService.createAlbum(albumData).subscribe(data => this.albums.push(data));
     }
 
     this.closeModal();
@@ -165,6 +163,7 @@ export class AdminAlbumComponent {
 
 
   deleteAlbum(id: number){
-
+    this.albumService.deleteAlbum(id).subscribe(d => console.log(d))
+    this.albums = this.albums.filter(a => a.id !== id);
   }
 }

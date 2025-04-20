@@ -17,7 +17,7 @@ export class AdminTagComponent {
   private fb = inject(FormBuilder);
   showModal = signal(false);
   modalTitle = signal('Добавить тег');
-  currentGenreId = signal<number | null>(null);
+  currentTagId = signal<number | null>(null);
   formFields = [
     {name: 'name', label: 'Название', type: 'text', required: true},
     {name: 'albumId', label: "Id альбома", type: 'number', required: true}
@@ -35,14 +35,14 @@ export class AdminTagComponent {
 
   openAdd() {
     this.modalTitle.set('Добавить тег');
-    this.currentGenreId.set(null);
+    this.currentTagId.set(null);
     this.tagForm.reset();
     this.showModal.set(true);
   }
 
   openEdit(tag: ITag) {
     this.modalTitle.set('Редактировать тег');
-    this.currentGenreId.set(tag.id);
+    this.currentTagId.set(tag.id);
     this.tagForm.patchValue({
       name: tag.name,
       id: tag.id,
@@ -59,7 +59,18 @@ export class AdminTagComponent {
       name: this.tagForm.value.name!
     }
     if(this.tagForm.value.albumId! > 0){
+      if(this.currentTagId()){
+        const id: number = this.currentTagId()!
+        this.tagService.updateTag(t, id).subscribe(data => {
+          for (let i = 0; i < this.tags.length; i++) {
+            if(this.tags[i].id === id){
+              this.tags[i].name = data.name
+            }
+          }
+        })
+      }
       this.tagService.createTag(t, this.tagForm.value.albumId!).subscribe(data => this.tags.push(data))
+
     }
     this.closeModal();
   }

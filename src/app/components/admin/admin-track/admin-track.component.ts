@@ -16,7 +16,7 @@ export class AdminTrackComponent implements OnInit {
   private fb = inject(FormBuilder);
   showModal = signal(false);
   modalTitle = signal('Добавить трек');
-  currentGenreId = signal<number | null>(null);
+  currentTrackId = signal<number | null>(null);
   formFields = [
     {name: 'title', label: 'Название', type: 'text', required: true},
     {name: 'albumId', label: "Id альбома", type: 'number', required: true}
@@ -35,14 +35,14 @@ export class AdminTrackComponent implements OnInit {
 
   openAdd() {
     this.modalTitle.set('Добавить трек');
-    this.currentGenreId.set(null);
+    this.currentTrackId.set(null);
     this.trackForm.reset();
     this.showModal.set(true);
   }
 
   openEdit(track: ITrack) {
     this.modalTitle.set('Редактировать трек');
-    this.currentGenreId.set(track.id);
+    this.currentTrackId.set(track.id);
     this.trackForm.patchValue({
       title: track.title,
       id: track.id,
@@ -58,6 +58,16 @@ export class AdminTrackComponent implements OnInit {
       albumId: this.trackForm.value.albumId!,
       id: this.trackForm.value.id!,
       title: this.trackForm.value.title!
+    }
+    if(this.currentTrackId()){
+      const id: number = this.currentTrackId()!;
+      this.trackService.updateTrack(t, id).subscribe(data => {
+        for (let i = 0; i < this.tracks.length; i++) {
+          if(this.tracks[i].id === id){
+            this.tracks[i].title = data.title
+          }
+        }
+      });
     }
     this.trackService.createTrack(t).subscribe(data => this.tracks.push(data))
     this.closeModal();

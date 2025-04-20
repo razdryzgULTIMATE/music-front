@@ -51,11 +51,27 @@ export class AdminGenreComponent implements OnInit{
     if (this.genreForm.invalid) return;
     console.log(this.genreForm.value)
     const g: IGenre = {id: this.genreForm.value.id!, name: this.genreForm.value.name!}
-    this.genreService.createGenre(g).subscribe(data => {
-      g.id = data.id
-      g.name = data.name
-    })
-    this.genres.push(g)
+    if(this.currentGenreId()){
+      console.log("updating genre")
+      const id: number = this.currentGenreId()!; //+ точно не null
+      this.genreService.updateGenre(g, id).subscribe(data => {
+        for (let i = 0; i < this.genres.length; i++) {
+          if(this.genres[i].id === id){
+            this.genres[i].name = data.name
+          }
+        }
+      })
+
+    }
+    else{
+      console.log("adding new genre")
+      this.genreService.createGenre(g).subscribe(data => {
+        g.id = data.id
+        g.name = data.name
+      })
+      this.genres.push(g)
+    }
+
     this.closeModal();
   }
 
